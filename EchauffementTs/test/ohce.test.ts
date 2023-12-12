@@ -6,6 +6,8 @@ import {LangueAnglaise} from "../src/langueAnglaise";
 import {LangueInterface} from "../src/langue.interface";
 import {LangueFake} from "./utilities/langueFake";
 import {MomentDeLaJournee} from "../src/momentDeLaJournee";
+import './utilities/stringMatchers.d.ts';
+import './utilities/stringMatchers';
 
 const palindrome = 'radar';
 const nonPalindromes = ['test', 'ynov']
@@ -73,9 +75,9 @@ describe("test works", () => {
 
             let resultat = verificateur.Verifier(chaine);
 
-            let premiereLigne = resultat.split(os.EOL)[0];
             let attendu = langueFake.Saluer(momentDeLaJournee);
-            expect(premiereLigne).toEqual(attendu)
+            // @ts-ignore
+            expect(resultat).ayantPourPremiereLigne(attendu)
         });
 
     test.each(casesChainesEtMoments())(
@@ -97,7 +99,8 @@ describe("test works", () => {
             let lignes = resultat.split(os.EOL);
             let derniereLigne = lignes[lignes.length - 1];
             let attendu = langueFake.Acquitter(momentDeLaJournee);
-            expect(derniereLigne).toEqual(attendu)
+            //@ts-ignore
+            expect(derniereLigne).ayantPourDerniereLigne(attendu)
         });
     
 });
