@@ -1,15 +1,23 @@
 import * as os from "os";
-import {Expressions} from "./Expressions";
+import {LangueInterface} from "./langue.interface";
+import {MomentDeLaJournee} from "./momentDeLaJournee";
 
 export class VerificateurPalindrome {
-    public static Verifier(chaine: string): string {
+    private readonly _langue: LangueInterface;
+
+    constructor(langue: LangueInterface) {
+        this._langue = langue;
+
+    }
+
+    public Verifier(chaine: string): string {
         let miroir = chaine.split('').reverse().join('');
 
-        let sortie = Expressions.BONJOUR + os.EOL + miroir + os.EOL;
+        let sortie = this._langue.Saluer(MomentDeLaJournee.Matin) + os.EOL + miroir + os.EOL;
 
-        if(miroir == chaine)
-            sortie += Expressions.BIEN_DIT + os.EOL;
+        if (miroir == chaine)
+            sortie += this._langue.Feliciter() + os.EOL;
 
-        return sortie + Expressions.AU_REVOIR;
+        return sortie + this._langue.Acquitter();
     }
 }
