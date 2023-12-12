@@ -9,13 +9,21 @@ import {MomentDeLaJournee} from "../src/momentDeLaJournee";
 
 const palindrome = 'radar';
 const nonPalindromes = ['test', 'ynov']
+const momentsDeLaJournee = [
+    MomentDeLaJournee.Inconnu,
+    MomentDeLaJournee.Matin,
+    MomentDeLaJournee.ApresMidi,
+    MomentDeLaJournee.Soiree,
+    MomentDeLaJournee.Nuit
+];
 
 describe("test works", () => {
     test.each([...nonPalindromes])(
         "QUAND on saisit un non-palindrome %s " +
         "ALORS elle est renvoyée en miroir",
         (chaine: string) => {
-            let resultat = VerificateurPalindromeBuilder.Default().Verifier(chaine);
+            let resultat = VerificateurPalindromeBuilder.Default()
+                .Verifier(chaine);
 
             let attendu = chaine.split('').reverse().join('');
             expect(resultat).toContain(attendu);
@@ -38,61 +46,58 @@ describe("test works", () => {
             expect(resultat).toContain(palindrome + os.EOL + attendu);
         });
 
-    test.each([...nonPalindromes, palindrome])(
-        'ETANT DONNE un utilisateur parlant %s ' +
-        'ET que nous sommes le matin ' +
+    function casesChainesEtMoments(){
+        let chaines = [...nonPalindromes, palindrome];
+        let cases: [MomentDeLaJournee, string][]  = [];
+
+        for (let momentDeLaJournee of momentsDeLaJournee)
+            for(let chaine of chaines)
+                cases.push([momentDeLaJournee, chaine])
+
+        return cases;
+    }
+
+    test.each(casesChainesEtMoments())(
+        'ETANT DONNE un utilisateur parlant une langue ' +
+        'ET que nous sommes le %s ' +
         'QUAND on saisit une chaine %s ' +
         'ALORS les salutations de cette langue à ce moment de la journée sont envoyées avant toute réponse',
-        (chaine: string) => {
+        (momentDeLaJournee: MomentDeLaJournee, chaine: string) => {
             let langueFake = new LangueFake();
-            let moment = MomentDeLaJournee.Matin;
 
             let verificateur =
                 new VerificateurPalindromeBuilder()
                     .AyantPourLangue(langueFake)
-                    .AyantPourMomentDeLaJournee(moment)
+                    .AyantPourMomentDeLaJournee(momentDeLaJournee)
                     .Build();
 
             let resultat = verificateur.Verifier(chaine);
 
             let premiereLigne = resultat.split(os.EOL)[0];
-            let attendu = langueFake.Saluer(moment);
+            let attendu = langueFake.Saluer(momentDeLaJournee);
             expect(premiereLigne).toEqual(attendu)
         });
 
-    test.each([...nonPalindromes, palindrome])(
-        'ETANT DONNE un utilisateur parlant francais ' +
+    test.each(casesChainesEtMoments())(
+        'ETANT DONNE un utilisateur parlant une langue ' +
+        'ET que nous sommes le %s ' +
         'QUAND on saisit une chaine %s ' +
-        'ALORS "Au revoir" est envoyé en dernier.',
-        (chaine: string) => {
-            const langue = new LangueFrancaise();
+        'ALORS l aquitance de cette langue à ce moment de la journée sont envoyé en dernier',
+        (momentDeLaJournee: MomentDeLaJournee, chaine: string) => {
+            let langueFake = new LangueFake();
+
             let verificateur =
                 new VerificateurPalindromeBuilder()
-                    .AyantPourLangue(langue)
+                    .AyantPourLangue(langueFake)
+                    .AyantPourMomentDeLaJournee(momentDeLaJournee)
                     .Build();
 
             let resultat = verificateur.Verifier(chaine);
 
             let lignes = resultat.split(os.EOL);
             let derniereLigne = lignes[lignes.length - 1];
-            expect(derniereLigne).toEqual(Expressions.AU_REVOIR)
+            let attendu = langueFake.Acquitter(momentDeLaJournee);
+            expect(derniereLigne).toEqual(attendu)
         });
-
-    test.each([...nonPalindromes, palindrome])(
-        'ETANT DONNE un utilisateur parlant anglais ' +
-        'QUAND on saisit une chaine %s ' +
-        'ALORS "Goodbye" est envoyé en dernier.',
-        (chaine: string) => {
-            const langue = new LangueAnglaise();
-            let verificateur =
-                new VerificateurPalindromeBuilder()
-                    .AyantPourLangue(langue)
-                    .Build();
-
-            let resultat = verificateur.Verifier(chaine);
-
-            let lignes = resultat.split(os.EOL);
-            let derniereLigne = lignes[lignes.length - 1];
-            expect(derniereLigne).toEqual(Expressions.GOODBYE)
-        });
+    
 });

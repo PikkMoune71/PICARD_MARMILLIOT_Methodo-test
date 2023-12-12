@@ -5,5 +5,5 @@ export interface LangueInterface {
 
     Saluer(moment: MomentDeLaJournee): string;
 
-    Acquitter(): string;
+    Acquitter(moment: MomentDeLaJournee): string;
 }
