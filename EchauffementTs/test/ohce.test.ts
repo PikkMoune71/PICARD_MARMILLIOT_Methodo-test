@@ -1,11 +1,11 @@
 import * as os from "os";
-import {Expressions} from "../src/Expressions";
-import {LangueFrancaise} from "../src/langueFrancaise";
+import {Expressions} from "../src/domaine/Expressions";
+import {LangueFrancaise} from "../src/domaine/langueFrancaise";
 import {VerificateurPalindromeBuilder} from "./utilities/verificateurPalindromeBuilder";
-import {LangueAnglaise} from "../src/langueAnglaise";
-import {LangueInterface} from "../src/langue.interface";
+import {LangueAnglaise} from "../src/domaine/langueAnglaise";
+import {LangueInterface} from "../src/domaine/langue.interface";
 import {LangueFake} from "./utilities/langueFake";
-import {MomentDeLaJournee} from "../src/momentDeLaJournee";
+import {MomentDeLaJournee} from "../src/domaine/momentDeLaJournee";
 import './utilities/stringMatchers.d.ts';
 import './utilities/stringMatchers';
 
