@@ -5,9 +5,19 @@ import {FrenchLanguage} from "../src/languages/FrenchLanguage";
 import {EnglishLanguage} from "../src/languages/EnglishLanguage";
 import {LanguageInteface} from "../src/languages/Language.interface";
 import {FakeLanguage} from "./utils/FakeLanguage";
+import {MomentOfTheDay} from "../src/moment/MomentOfTheDay";
+import './utils/stringMatchers.d.ts';
+import './utils/stringMatchers';
 
 const palindrome = 'kayak';
 const noPalindromes = ['jean', 'Antoine']
+const allMomentsOfTheDay = [
+    MomentOfTheDay.Unknow,
+    MomentOfTheDay.Morning,
+    MomentOfTheDay.Afternoon,
+    MomentOfTheDay.Evening,
+    MomentOfTheDay.Night
+];
 
 describe("test works", () => {
     test.each([[...noPalindromes]])("QUAND on saisit un non palindromes ALORS elle est renvoyée en miroir", (chaine: string) => {
@@ -31,15 +41,26 @@ describe("test works", () => {
         expect(result).toContain(palindrome + os.EOL + expected);
     });
 
-    test.each([...noPalindromes, palindrome])( 'ETANT DONNE un utilisateur parlant une langue fake ' +
-        'QUAND on saisit une chaîne %s ALORS les salutations de cette langue sont envoyées avant toute réponse',
-        (chaine: string) => {
+    function testHelloWithMoment(){
+        let parameter: any[] = [];
+        [...noPalindromes, palindrome].forEach((chaine: string) => {
+            allMomentsOfTheDay.forEach((moment: MomentOfTheDay) => {
+                parameter.push([chaine, moment]);
+                parameter.push([chaine, moment]);
+            });
+        });
+        return parameter;
+    }
+
+    test.each(testHelloWithMoment())( 'ETANT DONNE un utilisateur parlant une langue fake ' +
+        'QUAND on saisit une chaîne %s ALORS les salutations pour le moment %s de cette langue sont envoyées avant toute réponse',
+        (chaine: string, moment: MomentOfTheDay) => {
             let fakeLanguage = new FakeLanguage();
             let instanceBuilder = new VerificateurPalindromeBuilder();
-            let result = instanceBuilder.hadLanguage(fakeLanguage).Build().Verifier(chaine);
+            let result = instanceBuilder.hadLanguage(fakeLanguage).HadForMoment(moment).Build().Verifier(chaine);
 
-            let startString = result.split(os.EOL)[0];
-            expect(startString).toEqual(fakeLanguage.SayHello());
+            // @ts-ignore
+            expect(result).withFirstLine(fakeLanguage.SayHello(moment));
         });
 
 
@@ -60,10 +81,8 @@ describe("test works", () => {
             let verificateur = new VerificateurPalindromeBuilder().hadLanguage(language).Build();
 
             let result = verificateur.Verifier(chaine);
-
-            let lines = result.split(os.EOL);
-            let lastLines = lines[lines.length - 1];
-            expect(lastLines).toEqual(expected);
+            // @ts-ignore
+            expect(result).withLastLine(expected);
         });
 
 });

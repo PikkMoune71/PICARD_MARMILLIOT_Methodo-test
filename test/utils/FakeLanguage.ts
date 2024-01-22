@@ -1,4 +1,5 @@
 import {LanguageInteface} from "../../src/languages/Language.interface";
+import {MomentOfTheDay} from "../../src/moment/MomentOfTheDay";
 
 
 export class FakeLanguage implements LanguageInteface {
@@ -11,8 +12,8 @@ export class FakeLanguage implements LanguageInteface {
         return "Fake Language";
     }
 
-    SayHello(): string {
-        return "Hello !";
+    SayHello(moment: MomentOfTheDay): string {
+        return "Hello !" + moment.toString();
     }
 
     SayGoodBye(): string {

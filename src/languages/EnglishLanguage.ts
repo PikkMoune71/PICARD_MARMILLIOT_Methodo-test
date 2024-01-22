@@ -1,5 +1,6 @@
 import {LanguageInteface} from "./Language.interface";
 import {Expressions} from "../expressions";
+import {MomentOfTheDay} from "../moment/MomentOfTheDay";
 
 export class EnglishLanguage implements LanguageInteface {
 
@@ -8,7 +9,19 @@ export class EnglishLanguage implements LanguageInteface {
         return "Langue Anglaise";
     }
 
-    SayHello(): string {
+    SayHello(moment: MomentOfTheDay): string {
+        if(moment == MomentOfTheDay.Morning)
+            return Expressions.GOOD_MORNING;
+
+        if(moment == MomentOfTheDay.Afternoon)
+            return Expressions.GOOD_AFTERNOON;
+
+        if(moment == MomentOfTheDay.Evening)
+            return Expressions.GOOD_EVENING;
+
+        if(moment == MomentOfTheDay.Night)
+            return Expressions.GOOD_NIGHT;
+
         return Expressions.HELLO;
     }
 
