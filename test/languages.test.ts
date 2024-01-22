@@ -1,8 +1,8 @@
-import {FrenchLanguage} from "../src/languages/FrenchLanguage";
-import {Expressions} from "../src/expressions";
-import {EnglishLanguage} from "../src/languages/EnglishLanguage";
-import {LanguageInteface} from "../src/languages/Language.interface";
-import {MomentOfTheDay} from "../src/moment/MomentOfTheDay";
+import {FrenchLanguage} from "../src/domaine/languages/FrenchLanguage";
+import {Expressions} from "../src/domaine/expressions";
+import {EnglishLanguage} from "../src/domaine/languages/EnglishLanguage";
+import {LanguageInteface} from "../src/domaine/languages/Language.interface";
+import {MomentOfTheDay} from "../src/domaine/moment/MomentOfTheDay";
 
 
 describe("Langues", () => {

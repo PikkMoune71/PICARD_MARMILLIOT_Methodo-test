@@ -1,11 +1,11 @@
 import os from "os";
-import {Expressions} from "../src/expressions";
+import {Expressions} from "../src/domaine/expressions";
 import {VerificateurPalindromeBuilder} from "./utils/VerificateurPalindromeBuilder";
-import {FrenchLanguage} from "../src/languages/FrenchLanguage";
-import {EnglishLanguage} from "../src/languages/EnglishLanguage";
-import {LanguageInteface} from "../src/languages/Language.interface";
+import {FrenchLanguage} from "../src/domaine/languages/FrenchLanguage";
+import {EnglishLanguage} from "../src/domaine/languages/EnglishLanguage";
+import {LanguageInteface} from "../src/domaine/languages/Language.interface";
 import {FakeLanguage} from "./utils/FakeLanguage";
-import {MomentOfTheDay} from "../src/moment/MomentOfTheDay";
+import {MomentOfTheDay} from "../src/domaine/moment/MomentOfTheDay";
 import './utils/stringMatchers.d.ts';
 import './utils/stringMatchers';
 

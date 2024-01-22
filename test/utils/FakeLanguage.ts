@@ -1,5 +1,5 @@
-import {LanguageInteface} from "../../src/languages/Language.interface";
-import {MomentOfTheDay} from "../../src/moment/MomentOfTheDay";
+import {LanguageInteface} from "../../src/domaine/languages/Language.interface";
+import {MomentOfTheDay} from "../../src/domaine/moment/MomentOfTheDay";
 
 
 export class FakeLanguage implements LanguageInteface {

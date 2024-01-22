@@ -1,7 +1,7 @@
-import {LanguageInteface} from "../../src/languages/Language.interface";
-import {FrenchLanguage} from "../../src/languages/FrenchLanguage";
-import {VerificateurPalindrome} from "../../src/VerificateurPalindrome";
-import {MomentOfTheDay} from "../../src/moment/MomentOfTheDay";
+import {LanguageInteface} from "../../src/domaine/languages/Language.interface";
+import {FrenchLanguage} from "../../src/domaine/languages/FrenchLanguage";
+import {VerificateurPalindrome} from "../../src/domaine/VerificateurPalindrome";
+import {MomentOfTheDay} from "../../src/domaine/moment/MomentOfTheDay";
 
 export class VerificateurPalindromeBuilder {
     private language : LanguageInteface = new FrenchLanguage();
