@@ -11,14 +11,7 @@ export class LanguageSystemAdapter{
     private constructor() {
 
         const code = process.env.LANG || 'en-US';
-
-        if (code.startsWith('fr')) {
-            this.language = new FrenchLanguage();
-        } else if (code.startsWith('en')) {
-            this.language = new EnglishLanguage();
-        } else {
-            this.language = new EnglishLanguage();
-        }
+        this.language = this.getLanguageByCode(code);
     }
 
     public static getInstance(): LanguageSystemAdapter {
@@ -30,5 +23,15 @@ export class LanguageSystemAdapter{
 
     public getLanguage(): LanguageInteface {
         return this.language;
+    }
+
+    public getLanguageByCode(code: string): LanguageInteface {
+        if (code.startsWith('fr')) {
+            return new FrenchLanguage();
+        } else if (code.startsWith('en')) {
+            return new EnglishLanguage();
+        } else {
+            return new EnglishLanguage();
+        }
     }
 }
