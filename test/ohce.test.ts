@@ -1,4 +1,12 @@
+import { VerificateurPalindrome } from "../src/VerificateurPalindrome";
+
 describe("test works", () => {
-    test("One is one",
-        () => expect(true).toBe(true))
+    test.each([
+        ["test"],
+        ["abcde"]
+    ])("QUAND on saisit une chaine ALORS elle est renvoyée en miroir", (chaine: string) => {
+        let resultat: string = VerificateurPalindrome.Verifier(chaine);
+        let attendu: string = chaine.split('').reverse().join("");
+        expect(resultat).toEqual(attendu);
+    });
 });
