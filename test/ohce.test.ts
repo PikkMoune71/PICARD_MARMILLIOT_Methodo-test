@@ -7,7 +7,7 @@ describe("test works", () => {
     ])("QUAND on saisit une chaine ALORS elle est renvoyée en miroir", (chaine: string) => {
         let resultat: string = VerificateurPalindrome.Verifier(chaine);
         let attendu: string = chaine.split('').reverse().join("");
-        expect(resultat).toEqual(attendu);
+        expect(resultat).toContain(attendu);
     });
 
     test("QUAND on saisit un palindrome " +
@@ -17,6 +17,15 @@ describe("test works", () => {
 
         let resultat = VerificateurPalindrome.Verifier(palindrome);
 
-        expect(resultat).toEqual(palindrome + os.EOL + "Bien dit !");
+        expect(resultat).toContain(palindrome + os.EOL + "Bien dit !");
     });
+
+    test.each([['jean'], ['kayak']])('QUAND on saisit une chaîne %s ' +
+        'ALORS "Bonjour" est envoyé avant toute réponse',
+        (chaine: string) => {
+            let result = VerificateurPalindrome.Verifier(chaine);
+
+            let startString = result.split(os.EOL)[0];
+            expect(startString).toEqual("Bonjour")
+        });
 });

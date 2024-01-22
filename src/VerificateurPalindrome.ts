@@ -4,9 +4,11 @@ export class VerificateurPalindrome {
     public static Verifier(chaine: string): string {
         let miroir:string = chaine.split('').reverse().join('');
 
+        let sortie: string = "Bonjour" + os.EOL + miroir + os.EOL;
+
         if (chaine === miroir) {
-            return miroir + os.EOL + "Bien dit !";
+            sortie += "Bien dit !" + os.EOL;
         }
-        return miroir;
+        return sortie;
     }
 }
