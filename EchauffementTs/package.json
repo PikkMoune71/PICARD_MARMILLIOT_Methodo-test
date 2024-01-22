@@ -19,6 +19,7 @@
     "@babel/preset-env": "^7.23.5",
     "@types/jest": "^29.5.11",
     "babel-jest": "^29.7.0",
+    "readline-sync": "^1.4.10",
     "ts-node": "^10.9.2"
   }
 }

@@ -20,6 +20,10 @@ const momentsDeLaJournee = [
 ];
 
 describe("test works", () => {
+    /*
+    QUAND on saisit une chaîne ALORS celle-ci est renvoyée en miroir
+    ( un non palindrome )
+     */
     test.each([...nonPalindromes])(
         "QUAND on saisit un non-palindrome %s " +
         "ALORS elle est renvoyée en miroir",
@@ -31,6 +35,9 @@ describe("test works", () => {
             expect(resultat).toContain(attendu);
         });
 
+    /*
+    QUAND on saisit un palindrome ALORS celui-ci est renvoyé ET «Bien dit» est envoyé ensuite
+     */
     test.each([
         [new LangueFrancaise(), Expressions.BIEN_DIT],
         [new LangueAnglaise(), Expressions.WELL_SAID],
