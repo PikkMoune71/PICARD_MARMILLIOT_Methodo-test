@@ -57,7 +57,7 @@ describe("test works", () => {
         (chaine: string, moment: MomentOfTheDay) => {
             let fakeLanguage = new FakeLanguage();
             let instanceBuilder = new VerificateurPalindromeBuilder();
-            let result = instanceBuilder.hadLanguage(fakeLanguage).HadForMoment(moment).Build().Verifier(chaine);
+            let result = instanceBuilder.HadForMoment(moment).Build().Verifier(chaine);
 
             // @ts-ignore
             expect(result).withFirstLine(fakeLanguage.SayHello(moment));

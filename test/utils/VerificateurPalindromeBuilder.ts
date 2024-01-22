@@ -1,10 +1,10 @@
 import {LanguageInteface} from "../../src/domaine/languages/Language.interface";
-import {FrenchLanguage} from "../../src/domaine/languages/FrenchLanguage";
 import {VerificateurPalindrome} from "../../src/domaine/VerificateurPalindrome";
 import {MomentOfTheDay} from "../../src/domaine/moment/MomentOfTheDay";
+import {FakeLanguage} from "./FakeLanguage";
 
 export class VerificateurPalindromeBuilder {
-    private language : LanguageInteface = new FrenchLanguage();
+    private language : LanguageInteface = new FakeLanguage();
     private moment : MomentOfTheDay = MomentOfTheDay.Unknow;
 
     public static Default() {

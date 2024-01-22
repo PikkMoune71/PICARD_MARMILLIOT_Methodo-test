@@ -3,6 +3,7 @@ import {MomentOfTheDay} from "../src/domaine/moment/MomentOfTheDay";
 import {EnglishLanguage} from "../src/domaine/languages/EnglishLanguage";
 import {FrenchLanguage} from "../src/domaine/languages/FrenchLanguage";
 import {LanguageSystemAdapter} from "../src/tech/adapter/LanguageSystemAdapter";
+import os from "os";
 
 describe("Test de recettes", () => {
     test("Recettes", () => {
@@ -43,15 +44,15 @@ describe("Test de recettes", () => {
         console.log(verificateurInconnueNuit.Verifier("bob"));
 
         // Un palindrome, en anglais, le soir
-        let result1 = "Good Evening\n" + "radar\n" + "Well said !\n" + "Good Bye\n";
+        let result1 = "Good Evening" + os.EOL + "radar" + os.EOL + "Well said !" + os.EOL + "Good Bye" + os.EOL;
         expect(verificateurAnglaisSoir.Verifier("radar")).toEqual(result1);
 
         // Un non-palindrome, en français, le matin
-        let result2 = "Bonjour\n" + "avaj\n" + "Bonne Journée\n";
+        let result2 = "Bonjour" + os.EOL + "avaj" + os.EOL + "Bonne Journée" + os.EOL;
         expect(verificateurFrancaisMatin.Verifier("java")).toEqual(result2);
 
         // Un palindrome, en langue inconnue, le soir
-        let result3 = "Good Night\n" + "bob\n" + "Well said !\n" + "Good Bye\n";
+        let result3 = "Good Night" + os.EOL + "bob" + os.EOL + "Well said !" + os.EOL + "Good Bye" + os.EOL;
         expect(verificateurInconnueNuit.Verifier("bob")).toEqual(result3);
 
     });
