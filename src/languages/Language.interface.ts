@@ -6,7 +6,7 @@ export interface LanguageInteface {
 
     SayHello(moment: MomentOfTheDay): string;
 
-    SayGoodBye(): string;
+    SayGoodBye(moment: MomentOfTheDay): string;
 
     toString(): string;
 

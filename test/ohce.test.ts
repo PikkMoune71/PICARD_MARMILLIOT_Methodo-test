@@ -67,18 +67,29 @@ describe("test works", () => {
     function testGoodByeInDifferenteLanguage() {
         let parameter: any[] = [];
         [...noPalindromes, palindrome].forEach((chaine: string) => {
-            parameter.push([new FrenchLanguage(), chaine, Expressions.AU_REVOIR]);
-            parameter.push([new EnglishLanguage(), chaine, Expressions.GOODBYE]);
+
+            parameter.push([new FrenchLanguage(), chaine, MomentOfTheDay.Unknow, Expressions.AU_REVOIR]);
+            parameter.push([new FrenchLanguage(), chaine, MomentOfTheDay.Morning, Expressions.BONNE_JOURNEE]);
+            parameter.push([new FrenchLanguage(), chaine, MomentOfTheDay.Afternoon, Expressions.BON_APRESMIDI]);
+            parameter.push([new FrenchLanguage(), chaine, MomentOfTheDay.Evening, Expressions.BONNE_SOIREE]);
+            parameter.push([new FrenchLanguage(), chaine, MomentOfTheDay.Night, Expressions.BONNE_NUIT]);
+
+            parameter.push([new EnglishLanguage(), chaine, MomentOfTheDay.Unknow, Expressions.GOODBYE]);
+            parameter.push([new EnglishLanguage(), chaine, MomentOfTheDay.Morning, Expressions.GOODBYE]);
+            parameter.push([new EnglishLanguage(), chaine, MomentOfTheDay.Afternoon, Expressions.GOODBYE]);
+            parameter.push([new EnglishLanguage(), chaine, MomentOfTheDay.Evening, Expressions.GOODBYE]);
+            parameter.push([new EnglishLanguage(), chaine, MomentOfTheDay.Night, Expressions.GOODBYE]);
+
         });
         return parameter;
     }
 
     test.each(testGoodByeInDifferenteLanguage())(
         'ETANT DONNE un utilisateur parlant la %s ' +
-        'QUAND on saisit une chaîne %s ' +
+        'QUAND on saisit une chaîne %s au moment de la journee %s ' +
         'ALORS "%s" est envoyé en dernier.',
-        (language: LanguageInteface, chaine: string, expected: string) => {
-            let verificateur = new VerificateurPalindromeBuilder().hadLanguage(language).Build();
+        (language: LanguageInteface, chaine: string, moment: MomentOfTheDay, expected: string) => {
+            let verificateur = new VerificateurPalindromeBuilder().hadLanguage(language).HadForMoment(moment).Build();
 
             let result = verificateur.Verifier(chaine);
             // @ts-ignore

@@ -16,8 +16,8 @@ export class FakeLanguage implements LanguageInteface {
         return "Hello !" + moment.toString();
     }
 
-    SayGoodBye(): string {
-        return "Goodbye !";
+    SayGoodBye(moment: MomentOfTheDay): string {
+        return "Goodbye !" + moment.toString();
     }
 
 }

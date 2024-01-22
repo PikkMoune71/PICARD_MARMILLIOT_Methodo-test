@@ -32,11 +32,19 @@ describe("Langues", () => {
         });
 
     test.each([
-        [new FrenchLanguage(), Expressions.AU_REVOIR],
-        [new EnglishLanguage(), Expressions.GOODBYE],
-    ])("En %s on dis au revoir par '%s'",
-        (language: LanguageInteface, expected: string) => {
-            expect(language.SayGoodBye()).toBe(expected)
+        [new FrenchLanguage(), MomentOfTheDay.Unknow, Expressions.AU_REVOIR],
+        [new FrenchLanguage(), MomentOfTheDay.Morning, Expressions.BONNE_JOURNEE],
+        [new FrenchLanguage(), MomentOfTheDay.Afternoon, Expressions.BON_APRESMIDI],
+        [new FrenchLanguage(), MomentOfTheDay.Evening, Expressions.BONNE_SOIREE],
+        [new FrenchLanguage(), MomentOfTheDay.Night, Expressions.BONNE_NUIT],
+        [new EnglishLanguage(), MomentOfTheDay.Unknow, Expressions.GOODBYE],
+        [new EnglishLanguage(), MomentOfTheDay.Morning, Expressions.GOODBYE],
+        [new EnglishLanguage(), MomentOfTheDay.Afternoon, Expressions.GOODBYE],
+        [new EnglishLanguage(), MomentOfTheDay.Evening, Expressions.GOODBYE],
+        [new EnglishLanguage(), MomentOfTheDay.Night, Expressions.GOODBYE],
+    ])("En %s on dis au revoir au moment de la journée %s par '%s'",
+        (language: LanguageInteface, moment: MomentOfTheDay, expected: string) => {
+            expect(language.SayGoodBye(moment)).toBe(expected)
         })
     
 });

@@ -19,7 +19,20 @@ export class FrenchLanguage implements LanguageInteface {
         return Expressions.BIEN_DIT;
     }
 
-    SayGoodBye(): string {
+    SayGoodBye(moment: MomentOfTheDay): string {
+        if(moment == MomentOfTheDay.Morning){
+            return Expressions.BONNE_JOURNEE
+        }
+        if(moment == MomentOfTheDay.Afternoon) {
+            return Expressions.BON_APRESMIDI
+        }
+        if(moment == MomentOfTheDay.Evening) {
+            return Expressions.BONNE_SOIREE
+        }
+        if(moment == MomentOfTheDay.Night) {
+            return Expressions.BONNE_NUIT
+        }
+
         return Expressions.AU_REVOIR;
     }
 }

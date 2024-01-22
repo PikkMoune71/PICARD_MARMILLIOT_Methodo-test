@@ -29,7 +29,7 @@ export class EnglishLanguage implements LanguageInteface {
         return Expressions.WELL_SAID;
     }
 
-    SayGoodBye(): string {
+    SayGoodBye(moment: MomentOfTheDay): string {
         return Expressions.GOODBYE;
     }
 }

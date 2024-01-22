@@ -17,6 +17,6 @@ export class VerificateurPalindrome {
         if (chaine === miroir) {
             sortie += this.language.Congratulation() + os.EOL;
         }
-        return sortie + this.language.SayGoodBye();
+        return sortie + this.language.SayGoodBye(this.moment);
     }
 }

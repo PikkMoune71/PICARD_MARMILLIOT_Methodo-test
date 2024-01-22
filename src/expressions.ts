@@ -14,4 +14,9 @@ export class Expressions {
     public static readonly GOODBYE = "Good Bye";
     public static readonly AU_REVOIR = "Au revoir";
 
+    public static readonly BONNE_JOURNEE= "Bonne Journée";
+    public static readonly BON_APRESMIDI= "Bon Après-Midi";
+    public static readonly BONNE_SOIREE= "Bonne Soirée";
+    public static readonly BONNE_NUIT= "Bonne Nuit";
+
 }
