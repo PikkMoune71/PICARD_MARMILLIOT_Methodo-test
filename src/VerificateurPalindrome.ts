@@ -9,6 +9,6 @@ export class VerificateurPalindrome {
         if (chaine === miroir) {
             sortie += "Bien dit !" + os.EOL;
         }
-        return sortie;
+        return sortie + "Au Revoir";
     }
 }
