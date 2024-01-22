@@ -14,4 +14,8 @@ export class FrenchLanguage implements LanguageInteface {
     Congratulation(): string {
         return Expressions.BIEN_DIT;
     }
+
+    SayGoodBye(): string {
+        return Expressions.AU_REVOIR;
+    }
 }

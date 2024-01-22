@@ -15,4 +15,8 @@ export class EnglishLanguage implements LanguageInteface {
     Congratulation(): string {
         return Expressions.WELL_SAID;
     }
+
+    SayGoodBye(): string {
+        return Expressions.GOODBYE;
+    }
 }

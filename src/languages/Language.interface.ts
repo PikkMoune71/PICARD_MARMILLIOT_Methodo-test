@@ -4,6 +4,8 @@ export interface LanguageInteface {
 
     SayHello(): string;
 
+    SayGoodBye(): string;
+
     toString(): string;
 
 }

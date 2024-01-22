@@ -11,7 +11,7 @@ describe("Langues", () => {
     ])("En %s on salue par '%s'",
         (language: LanguageInteface, expected: string) => {
             expect(language.Congratulation()).toBe(expected)
-        })
+        });
 
 
     test.each([
@@ -20,6 +20,14 @@ describe("Langues", () => {
     ])("En %s on salue par '%s'",
         (language: LanguageInteface, expected: string) => {
             expect(language.SayHello()).toBe(expected)
+        });
+
+    test.each([
+        [new FrenchLanguage(), Expressions.AU_REVOIR],
+        [new EnglishLanguage(), Expressions.GOODBYE],
+    ])("En %s on salue par '%s'",
+        (language: LanguageInteface, expected: string) => {
+            expect(language.SayGoodBye()).toBe(expected)
         })
     
 });

@@ -15,4 +15,8 @@ export class FakeLanguage implements LanguageInteface {
         return "Hello !";
     }
 
+    SayGoodBye(): string {
+        return "Goodbye !";
+    }
+
 }

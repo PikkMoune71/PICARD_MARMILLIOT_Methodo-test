@@ -43,14 +43,27 @@ describe("test works", () => {
         });
 
 
-    test.each([...noPalindromes, palindrome])('QUAND on saisit une chaîne %s ' +
-        'ALORS "Au revoir" est envoyé en dernier.',
-        (chaine: string) => {
-            let result = VerificateurPalindromeBuilder.Default().Verifier(chaine);
+    function testGoodByeInDifferenteLanguage() {
+        let parameter: any[] = [];
+        [...noPalindromes, palindrome].forEach((chaine: string) => {
+            parameter.push([new FrenchLanguage(), chaine, Expressions.AU_REVOIR]);
+            parameter.push([new EnglishLanguage(), chaine, Expressions.GOODBYE]);
+        });
+        return parameter;
+    }
+
+    test.each(testGoodByeInDifferenteLanguage())(
+        'ETANT DONNE un utilisateur parlant la %s ' +
+        'QUAND on saisit une chaîne %s ' +
+        'ALORS "%s" est envoyé en dernier.',
+        (language: LanguageInteface, chaine: string, expected: string) => {
+            let verificateur = new VerificateurPalindromeBuilder().hadLanguage(language).Build();
+
+            let result = verificateur.Verifier(chaine);
 
             let lines = result.split(os.EOL);
             let lastLines = lines[lines.length - 1];
-            expect(lastLines).toEqual("Au Revoir");
+            expect(lastLines).toEqual(expected);
         });
 
 });
