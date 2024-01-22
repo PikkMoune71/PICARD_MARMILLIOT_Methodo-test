@@ -7,7 +7,7 @@ const withLastLine: MatcherFunction<[attendu: unknown]> =
         if(typeof actual !== 'string') throw new Error("Only works with strings");
         if(typeof expected !== 'string') throw new Error("Only works with strings");
 
-        const lines = actual.split(os.EOL);
+        const lines = actual.split(os.EOL).filter(line => line != "");
         const lastLine = lines[lines.length - 1];
 
         const pass = lastLine == expected;
