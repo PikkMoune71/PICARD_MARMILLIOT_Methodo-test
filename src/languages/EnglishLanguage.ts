@@ -5,7 +5,11 @@ export class EnglishLanguage implements LanguageInteface {
 
 
     public toString(): string {
-        return "langue Anglaise";
+        return "Langue Anglaise";
+    }
+
+    SayHello(): string {
+        return Expressions.HELLO;
     }
 
     Congratulation(): string {

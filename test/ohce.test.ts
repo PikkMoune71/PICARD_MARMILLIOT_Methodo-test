@@ -4,12 +4,13 @@ import {VerificateurPalindromeBuilder} from "./utils/VerificateurPalindromeBuild
 import {FrenchLanguage} from "../src/languages/FrenchLanguage";
 import {EnglishLanguage} from "../src/languages/EnglishLanguage";
 import {LanguageInteface} from "../src/languages/Language.interface";
+import {FakeLanguage} from "./utils/FakeLanguage";
 
 const palindrome = 'kayak';
 const noPalindromes = ['jean', 'Antoine']
 
 describe("test works", () => {
-    test.each([[...noPalindromes]])("QUAND on saisit une chaine ALORS elle est renvoyée en miroir", (chaine: string) => {
+    test.each([[...noPalindromes]])("QUAND on saisit un non palindromes ALORS elle est renvoyée en miroir", (chaine: string) => {
         let resultat: string = VerificateurPalindromeBuilder.Default().Verifier(chaine);
         let attendu: string = chaine.split('').reverse().join("");
         expect(resultat).toContain(attendu);
@@ -30,13 +31,15 @@ describe("test works", () => {
         expect(result).toContain(palindrome + os.EOL + expected);
     });
 
-    test.each([...noPalindromes, palindrome])('QUAND on saisit une chaîne %s ' +
-        'ALORS "Bonjour" est envoyé avant toute réponse',
+    test.each([...noPalindromes, palindrome])( 'ETANT DONNE un utilisateur parlant une langue fake ' +
+        'QUAND on saisit une chaîne %s ALORS les salutations de cette langue sont envoyées avant toute réponse',
         (chaine: string) => {
-            let result = VerificateurPalindromeBuilder.Default().Verifier(chaine);
+            let fakeLanguage = new FakeLanguage();
+            let instanceBuilder = new VerificateurPalindromeBuilder();
+            let result = instanceBuilder.hadLanguage(fakeLanguage).Build().Verifier(chaine);
 
             let startString = result.split(os.EOL)[0];
-            expect(startString).toEqual("Bonjour")
+            expect(startString).toEqual(fakeLanguage.SayHello());
         });
 
 

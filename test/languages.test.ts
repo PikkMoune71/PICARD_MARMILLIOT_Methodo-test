@@ -12,4 +12,14 @@ describe("Langues", () => {
         (language: LanguageInteface, expected: string) => {
             expect(language.Congratulation()).toBe(expected)
         })
+
+
+    test.each([
+        [new FrenchLanguage(), Expressions.BONJOUR],
+        [new EnglishLanguage(), Expressions.HELLO],
+    ])("En %s on salue par '%s'",
+        (language: LanguageInteface, expected: string) => {
+            expect(language.SayHello()).toBe(expected)
+        })
+    
 });

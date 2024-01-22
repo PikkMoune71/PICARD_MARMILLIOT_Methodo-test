@@ -7,6 +7,10 @@ export class FrenchLanguage implements LanguageInteface {
         return "Langue Française";
     }
 
+    SayHello(): string {
+        return Expressions.BONJOUR;
+    }
+
     Congratulation(): string {
         return Expressions.BIEN_DIT;
     }
