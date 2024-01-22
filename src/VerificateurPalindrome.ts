@@ -5,7 +5,7 @@ export class VerificateurPalindrome {
         let miroir:string = chaine.split('').reverse().join('');
 
         if (chaine === miroir) {
-            return miroir + os.EOL;
+            return miroir + os.EOL + "Bien dit !";
         }
         return miroir;
     }
